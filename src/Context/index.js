@@ -266,7 +266,10 @@ class Context {
     if (key === '$parent') {
       return this._getFrame(1)
     }
-    return this._getValue(this._getFrame(0), key) || ''
+
+    let resolvedVal = this._getValue(this._getFrame(0), key)
+
+    return [undefined, null].includes(resolvedVal) ? '' : resolvedVal
   }
 
   /**
